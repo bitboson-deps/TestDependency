@@ -1,0 +1,49 @@
+# This file is part of TestDependency.
+#
+# Copyright (c) BitBoson
+#
+# TestDependency is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# TestDependency is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with TestDependency.  If not, see <https://www.gnu.org/licenses/>.
+#
+# Written by:
+#     - Tyler Parcell <OriginLegend>
+#
+
+# Define Project Settings
+project:
+  type: lib
+  name: TestProj
+  version: 1.0.0
+  source: src
+  test: test
+  targets:
+    - default
+
+# Define External Dependencies
+dependencies:
+  - name: leveldb
+    source: git
+    url:  git://github.com/bitboson-deps/leveldb.git
+    rev: 1.22
+    type: manual
+    target default:
+      build:
+        - mkdir -p build
+        - cd build
+        - cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=1 ..
+        - make leveldb
+      libs:
+        - build/libleveldb.so.1
+      include:
+        - include/leveldb
+
