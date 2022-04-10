@@ -33,7 +33,7 @@ project:
 dependencies:
   - name: leveldb
     source: git
-    url:  git://github.com/bitboson-deps/leveldb.git
+    url:  https://github.com/bitboson-deps/leveldb.git
     rev: 1.22
     type: manual
     target default:
